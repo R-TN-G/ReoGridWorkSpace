@@ -1,12 +1,62 @@
-﻿<Window x:Class="ReoGridWorkSpace.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ReoGridWorkSpace"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<Window
+    x:Class="ReoGridWorkSpace.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonDock="https://github.com/Dirkster99/AvalonDock"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ReoGridWorkSpace"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xcad="http://xceed.com"
+    Title="MainWindow"
+    Width="1600"
+    Height="900"
+    mc:Ignorable="d">
+    <DockPanel>
+        <Menu
+            Background="#001016"
+            DockPanel.Dock="Top"
+            Foreground="White">
+            <MenuItem Command="{Binding OpenCsvImportCommand}" Header="CSV Import" />
+            <MenuItem Command="{Binding OpenPaymentViewerCommand}" Header="Payment Viewer" />
+            <MenuItem Command="{Binding OpenTrendCommand}" Header="Trend" />
+            <MenuItem Command="{Binding OpenWebBrowserCommand}" Header="Web Browser" />
+        </Menu>
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+            </Grid.Resources>
+            <avalonDock:DockingManager x:Name="dockManager">
+                <avalonDock:DockingManager.Theme>
+                    <avalonDock:Vs2013DarkTheme />
+                </avalonDock:DockingManager.Theme>
+                <avalonDock:LayoutRoot>
+                    <avalonDock:LayoutPanel x:Name="MainPanel" Orientation="Horizontal">
+                        <avalonDock:LayoutDocumentPane>
+                            <avalonDock:LayoutDocument Title="Browser" ContentId="Browser1">
+                                <TextBox Text="Sample" />
+                            </avalonDock:LayoutDocument>
+                        </avalonDock:LayoutDocumentPane>
 
-    </Grid>
+                        <avalonDock:LayoutPanel Orientation="Vertical">
+                            <avalonDock:LayoutDocumentPane>
+                                <avalonDock:LayoutDocument Title="Payment Viewer" ContentId="PaymentViewerDocument">
+                                    <TextBox Text="Sample2" />
+                                </avalonDock:LayoutDocument>
+                                <avalonDock:LayoutDocument Title="CSV Import" ContentId="CsvImportDocument">
+                                    <TextBox Text="Sample3" />
+                                </avalonDock:LayoutDocument>
+                            </avalonDock:LayoutDocumentPane>
+                            <avalonDock:LayoutDocumentPane>
+                                <avalonDock:LayoutDocument Title="Trend Viewer" ContentId="TrendViewerDocument">
+                                    <TextBox Text="Sample4" />
+                                </avalonDock:LayoutDocument>
+                            </avalonDock:LayoutDocumentPane>
+                        </avalonDock:LayoutPanel>
+                    </avalonDock:LayoutPanel>
+                </avalonDock:LayoutRoot>
+            </avalonDock:DockingManager>
+        </Grid>
+    </DockPanel>
 </Window>
