@@ -17,4 +17,10 @@
     <PackageReference Include="unvell.ReoGridWPF.dll" Version="3.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ReoGridWorkSpace_Log.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

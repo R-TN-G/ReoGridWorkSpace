@@ -1,8 +1,9 @@
 ﻿<Window
-    x:Class="ReoGridWorkSpace.MainWindow"
+    x:Class="ReoGridWorkSpace.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:avalonDock="https://github.com/Dirkster99/AvalonDock"
+    xmlns:custom="clr-namespace:ReoGridWorkSpace.Views.Custom"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ReoGridWorkSpace"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -16,10 +17,10 @@
             Background="#001016"
             DockPanel.Dock="Top"
             Foreground="White">
-            <MenuItem Command="{Binding OpenCsvImportCommand}" Header="CSV Import" />
+            <!--<MenuItem Command="{Binding OpenCsvImportCommand}" Header="CSV Import" />
             <MenuItem Command="{Binding OpenPaymentViewerCommand}" Header="Payment Viewer" />
             <MenuItem Command="{Binding OpenTrendCommand}" Header="Trend" />
-            <MenuItem Command="{Binding OpenWebBrowserCommand}" Header="Web Browser" />
+            <MenuItem Command="{Binding OpenWebBrowserCommand}" Header="Web Browser" />-->
         </Menu>
         <Grid>
             <Grid.Resources>
@@ -27,6 +28,10 @@
                     <Setter Property="Background" Value="Transparent" />
                 </Style>
             </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
             <avalonDock:DockingManager x:Name="dockManager">
                 <avalonDock:DockingManager.Theme>
                     <avalonDock:Vs2013DarkTheme />
@@ -34,29 +39,22 @@
                 <avalonDock:LayoutRoot>
                     <avalonDock:LayoutPanel x:Name="MainPanel" Orientation="Horizontal">
                         <avalonDock:LayoutDocumentPane>
-                            <avalonDock:LayoutDocument Title="Browser" ContentId="Browser1">
-                                <TextBox Text="Sample" />
+                            <avalonDock:LayoutDocument Title="AI_徳川成績">
+                                <custom:ReoGridSheet DataContext="{Binding ScoreViewModel}" />
                             </avalonDock:LayoutDocument>
                         </avalonDock:LayoutDocumentPane>
-
-                        <avalonDock:LayoutPanel Orientation="Vertical">
-                            <avalonDock:LayoutDocumentPane>
-                                <avalonDock:LayoutDocument Title="Payment Viewer" ContentId="PaymentViewerDocument">
-                                    <TextBox Text="Sample2" />
-                                </avalonDock:LayoutDocument>
-                                <avalonDock:LayoutDocument Title="CSV Import" ContentId="CsvImportDocument">
-                                    <TextBox Text="Sample3" />
-                                </avalonDock:LayoutDocument>
-                            </avalonDock:LayoutDocumentPane>
-                            <avalonDock:LayoutDocumentPane>
-                                <avalonDock:LayoutDocument Title="Trend Viewer" ContentId="TrendViewerDocument">
-                                    <TextBox Text="Sample4" />
-                                </avalonDock:LayoutDocument>
-                            </avalonDock:LayoutDocumentPane>
-                        </avalonDock:LayoutPanel>
+                        <avalonDock:LayoutDocumentPane>
+                            <avalonDock:LayoutDocument Title="国名">
+                                <custom:ReoGridSheet DataContext="{Binding CountryViewModel}" />
+                            </avalonDock:LayoutDocument>
+                        </avalonDock:LayoutDocumentPane>
                     </avalonDock:LayoutPanel>
                 </avalonDock:LayoutRoot>
             </avalonDock:DockingManager>
+
+            <Grid Grid.Row="1" Background="Gray">
+                <Button Content="閉じる" Command="{Binding CloseCommand}" Width="120" Margin="0,4"/>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>
