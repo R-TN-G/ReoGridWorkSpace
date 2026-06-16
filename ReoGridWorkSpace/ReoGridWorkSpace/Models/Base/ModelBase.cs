@@ -2,7 +2,7 @@
 
 namespace ReoGridWorkSpace.Models
 {
-  public class ModelBase : ObservableObject //BindableBase
+  public class ModelBase : ObservableObject
   {
     protected log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

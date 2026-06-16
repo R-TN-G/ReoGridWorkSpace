@@ -1,9 +1,6 @@
-﻿using ReoGridWorkSpace.Interface;
-using ReoGridWorkSpace.ViewModels;
+﻿using ReoGridWorkSpace.ViewModels;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,20 +11,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using unvell.ReoGrid;
 
-namespace ReoGridWorkSpace.Views.Custom
+namespace ReoGridWorkSpace.Views
 {
   /// <summary>
-  /// ReoGridSheet.xaml の相互作用ロジック
+  /// AnchorableWindow.xaml の相互作用ロジック
   /// </summary>
-  public partial class ReoGridSheet : UserControl
+  public partial class AnchorableWindow : Window
   {
-    public ReoGridSheet()
+    public AnchorableWindow()
     {
       InitializeComponent();
     }
+
+    public AnchorableWindow(AnchorableWindowViewModel vm)
+    {
+      InitializeComponent();
+      DataContext = vm;
+
+      vm.CloseAction = () =>
+      {
+        this.Close();
+      };
+    }
+
   }
 }

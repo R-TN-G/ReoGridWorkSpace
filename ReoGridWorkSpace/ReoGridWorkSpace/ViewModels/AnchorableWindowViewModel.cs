@@ -1,25 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using ReoGridWorkSpace.Interface;
+using ReoGridWorkSpace.Service;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Threading;
-using ReoGridWorkSpace.Interface;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Windows.Navigation;
 
 namespace ReoGridWorkSpace.ViewModels
 {
-  public partial class MainWindowViewModel : ViewModelBase, IDisposable
+  public partial class AnchorableWindowViewModel : ViewModelBase, IDisposable
   {
-
     // スコア表示用Grid ViewModel
     public ReoGridSheetScoreViewModel ScoreViewModel { get; set; }
     // 国名表示用Grid ViewModel
@@ -32,26 +24,16 @@ namespace ReoGridWorkSpace.ViewModels
 
 
 
-
-    public MainWindowViewModel(IMessageService messageService,
-                               INavigationService navigationService,
-                               ReoGridSheetScoreViewModel scoreViewModel,
-                               ReoGridSheetCountryViewModel countryViewModel)
-                               : base(messageService, navigationService)
+    public AnchorableWindowViewModel(IMessageService messageService,
+                                     INavigationService navigationService,
+                                     ReoGridSheetScoreViewModel scoreViewModel,
+                                     ReoGridSheetCountryViewModel countryViewModel)
+                                     : base(messageService, navigationService)
     {
       // 各reoGridの中身がある子ViewModelを定義
       ScoreViewModel = scoreViewModel;
       CountryViewModel = countryViewModel;
-
-      #region 子ViewModelに移行
-      //// シート内容作成クラス取得
-      //_scoreSheetCreator = scoreSheetCreator;
-      //ScoreTable = new DataTable();
-      //// ReoGridの中身作成
-      //ScoreTable = _scoreSheetCreator.CreateDataSource();
-      #endregion
     }
-
 
 
     [RelayCommand]
@@ -60,19 +42,6 @@ namespace ReoGridWorkSpace.ViewModels
       try
       {
         CloseAction?.Invoke();
-      }
-      catch(Exception ex) 
-      {
-        base.Logger.Error(ex);
-      }
-    }
-
-    [RelayCommand]
-    private void ShowAnchorableWindow(object obj)
-    {
-      try
-      {
-        RelayShowWindow<Views.AnchorableWindow>();
       }
       catch (Exception ex)
       {
@@ -90,7 +59,7 @@ namespace ReoGridWorkSpace.ViewModels
     {
       if (disposing)
       {
-        
+
       }
       base.Dispose(disposing);
     }

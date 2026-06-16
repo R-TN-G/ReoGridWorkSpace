@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace ReoGridWorkSpace.ViewModels
 {
-  public class ViewModelBase : ObservableObject, IDisposable //Models.BindableBase
+  public class ViewModelBase : ObservableObject, IDisposable
   {
 
     /// <summary>

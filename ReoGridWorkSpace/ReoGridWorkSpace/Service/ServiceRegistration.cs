@@ -21,11 +21,13 @@ namespace ReoGridWorkSpace.Service
 
       // ViewModel（Transient）
       services.AddTransient<MainWindowViewModel>();
+      services.AddTransient<AnchorableWindowViewModel>();
       services.AddTransient<ReoGridSheetScoreViewModel>();
       services.AddTransient<ReoGridSheetCountryViewModel>();
 
       // Window（ViewModelとの結びつきに必要）
       services.AddTransient<MainWindow>();
+      services.AddTransient<AnchorableWindow>();
 
 
       // Model

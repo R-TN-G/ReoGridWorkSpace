@@ -12,49 +12,46 @@
     Width="1600"
     Height="900"
     mc:Ignorable="d">
-    <DockPanel>
-        <Menu
-            Background="#001016"
-            DockPanel.Dock="Top"
-            Foreground="White">
-            <!--<MenuItem Command="{Binding OpenCsvImportCommand}" Header="CSV Import" />
-            <MenuItem Command="{Binding OpenPaymentViewerCommand}" Header="Payment Viewer" />
-            <MenuItem Command="{Binding OpenTrendCommand}" Header="Trend" />
-            <MenuItem Command="{Binding OpenWebBrowserCommand}" Header="Web Browser" />-->
-        </Menu>
-        <Grid>
-            <Grid.Resources>
-                <Style TargetType="TextBox">
-                    <Setter Property="Background" Value="Transparent" />
-                </Style>
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
-            <avalonDock:DockingManager x:Name="dockManager">
-                <avalonDock:DockingManager.Theme>
-                    <avalonDock:Vs2013DarkTheme />
-                </avalonDock:DockingManager.Theme>
-                <avalonDock:LayoutRoot>
-                    <avalonDock:LayoutPanel x:Name="MainPanel" Orientation="Horizontal">
-                        <avalonDock:LayoutDocumentPane>
-                            <avalonDock:LayoutDocument Title="AI_徳川成績">
-                                <custom:ReoGridSheet DataContext="{Binding ScoreViewModel}" />
-                            </avalonDock:LayoutDocument>
-                        </avalonDock:LayoutDocumentPane>
-                        <avalonDock:LayoutDocumentPane>
-                            <avalonDock:LayoutDocument Title="国名">
-                                <custom:ReoGridSheet DataContext="{Binding CountryViewModel}" />
-                            </avalonDock:LayoutDocument>
-                        </avalonDock:LayoutDocumentPane>
-                    </avalonDock:LayoutPanel>
-                </avalonDock:LayoutRoot>
-            </avalonDock:DockingManager>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <avalonDock:DockingManager>
+            <avalonDock:DockingManager.Theme>
+                <avalonDock:Vs2013DarkTheme />
+            </avalonDock:DockingManager.Theme>
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel Orientation="Horizontal">
+                    <avalonDock:LayoutDocumentPane>
+                        <avalonDock:LayoutDocument Title="AI_徳川成績">
+                            <custom:ReoGridSheet DataContext="{Binding ScoreViewModel}" />
+                        </avalonDock:LayoutDocument>
+                    </avalonDock:LayoutDocumentPane>
+                    <avalonDock:LayoutDocumentPane>
+                        <avalonDock:LayoutDocument Title="国名">
+                            <custom:ReoGridSheet DataContext="{Binding CountryViewModel}" />
+                        </avalonDock:LayoutDocument>
+                    </avalonDock:LayoutDocumentPane>
+                </avalonDock:LayoutPanel>
 
-            <Grid Grid.Row="1" Background="Gray">
-                <Button Content="閉じる" Command="{Binding CloseCommand}" Width="120" Margin="0,4"/>
-            </Grid>
+            </avalonDock:LayoutRoot>
+        </avalonDock:DockingManager>
+
+        <Grid Grid.Row="1" Background="Gray">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button
+                    Width="260"
+                    Margin="0,4,40,4"
+                    Command="{Binding ShowAnchorableWindowCommand}"
+                    Content="LayoutAnchorablePane確認画面へ移動" />
+                <Button
+                    Width="120"
+                    Margin="0,4"
+                    Command="{Binding CloseCommand}"
+                    Content="閉じる" />
+            </StackPanel>
+
         </Grid>
-    </DockPanel>
+    </Grid>
 </Window>
