@@ -20,7 +20,7 @@ namespace ReoGridWorkSpace.Models
         var list = SetList();
 
         // 列定義
-        var dt = new DataTable("ShogunScores");
+        var dt = new DataTable();
         dt.Columns.Add("出席番号", typeof(int));
         dt.Columns.Add("氏名", typeof(string));
         dt.Columns.Add("国語", typeof(int));

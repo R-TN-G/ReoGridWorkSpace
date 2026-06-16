@@ -30,10 +30,10 @@ namespace ReoGridWorkSpace.Service
 
       // Model
       // (テストコード使用)
-      services.AddTransient<IScoreSheetCreator, CodeScoreSheetCreator>();
+      //services.AddTransient<IScoreSheetCreator, CodeScoreSheetCreator>();
       services.AddTransient<ICountrySheetCreator, CodeCountrySheetCreator>();
       // (Excel使用)
-
+      services.AddTransient<IScoreSheetCreator, ExcelScoreSheetCreator>();
 
     }
   }
