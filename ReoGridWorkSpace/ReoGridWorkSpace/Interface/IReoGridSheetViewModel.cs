@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ReoGridWorkSpace.Event;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using unvell.ReoGrid;
 
 namespace ReoGridWorkSpace.Interface
 {
@@ -19,5 +16,20 @@ namespace ReoGridWorkSpace.Interface
     /// データソース変更時、画面反映用
     /// </summary>
     event PropertyChangedEventHandler? PropertyChanged;
+
+    /// <summary>
+    /// セル編集時にSheetからVMへ通知
+    /// </summary>
+    event EventHandler<CellChangedEventArgs>? CellDataChanged;
+
+    /// <summary>
+    /// ReoGridの詳細カスタマイズ（数式など）
+    /// </summary>
+    Action<Worksheet, DataTable>? ConfigureSheet => null;
+
+    /// <summary>
+    /// CellDataChangedの補助
+    /// </summary>
+    void RaiseCellDataChanged(CellChangedEventArgs args);
   }
 }

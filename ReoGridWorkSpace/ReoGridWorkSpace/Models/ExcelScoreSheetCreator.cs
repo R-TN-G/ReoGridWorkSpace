@@ -25,6 +25,7 @@ namespace ReoGridWorkSpace.Models
         var dt = new DataTable();
         dt.Columns.Add("出席番号", typeof(int));
         dt.Columns.Add("氏名", typeof(string));
+        dt.Columns.Add("生年月日", typeof(DateTime));
         dt.Columns.Add("国語", typeof(int));
         dt.Columns.Add("数学", typeof(int));
         dt.Columns.Add("英語", typeof(int));
@@ -40,6 +41,7 @@ namespace ReoGridWorkSpace.Models
           DataRow row = dt.NewRow();
           row["出席番号"] = item.Id;
           row["氏名"] = item.Name;
+          row["生年月日"] = item.BirthDate;
           row["国語"] = item.Japanese;
           row["数学"] = item.Math;
           row["英語"] = item.English;

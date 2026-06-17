@@ -50,6 +50,12 @@
                     Margin="0,4"
                     Command="{Binding CloseCommand}"
                     Content="閉じる" />
+
+                <Button
+                    Width="100"
+                    Margin="20,0"
+                    Command="{Binding TestCommand}"
+                    Content="Test" />
             </StackPanel>
 
         </Grid>

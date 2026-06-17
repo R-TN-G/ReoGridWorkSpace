@@ -14,22 +14,24 @@ namespace ReoGridWorkSpace.Entity
     [ExcelColumnIndex(1)]
     public string Name { get; set; } = string.Empty;
     [ExcelColumnIndex(2)]
-    public int Japanese { get; set; }
+    public DateTime? BirthDate { get; set; }
     [ExcelColumnIndex(3)]
-    public int Math { get; set; }
+    public int Japanese { get; set; }
     [ExcelColumnIndex(4)]
-    public int English { get; set; }
+    public int Math { get; set; }
     [ExcelColumnIndex(5)]
-    public int Chemistry { get; set; }
+    public int English { get; set; }
     [ExcelColumnIndex(6)]
-    public int Physics { get; set; }
+    public int Chemistry { get; set; }
     [ExcelColumnIndex(7)]
-    public int JapanHistory { get; set; }
+    public int Physics { get; set; }
     [ExcelColumnIndex(8)]
-    public int WorldHistory { get; set; }
+    public int JapanHistory { get; set; }
     [ExcelColumnIndex(9)]
-    public int Health { get; set; }
+    public int WorldHistory { get; set; }
     [ExcelColumnIndex(10)]
+    public int Health { get; set; }
+    [ExcelColumnIndex(11)]
     public int Ethics { get; set; }
 
     public ScoreEntity()
@@ -38,10 +40,11 @@ namespace ReoGridWorkSpace.Entity
     }
 
     // コンストラクタ
-    public ScoreEntity(int id, string name, int jpn, int math, int eng, int chem, int phys, int jHist, int wHist, int health, int ethics)
+    public ScoreEntity(int id, string name, DateTime? birthDate, int jpn, int math, int eng, int chem, int phys, int jHist, int wHist, int health, int ethics)
     {
       Id = id;
       Name = name;
+      BirthDate = birthDate;
       Japanese = jpn;
       Math = math;
       English = eng;

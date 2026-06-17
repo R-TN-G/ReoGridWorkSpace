@@ -80,6 +80,19 @@ namespace ReoGridWorkSpace.ViewModels
       }
     }
 
+    [RelayCommand]
+    private void Test(object obj)
+    {
+      try
+      {
+        var aa = ScoreViewModel.ReoGridTable;
+      }
+      catch (Exception ex)
+      {
+        base.Logger.Error(ex);
+      }
+    }
+
 
     /// <summary>
     /// ViewModelBaseの引数ありDisposeを上書きし、終了時の自動Dispose処理を設定する
