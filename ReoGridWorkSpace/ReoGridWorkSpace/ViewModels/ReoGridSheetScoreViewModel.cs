@@ -19,6 +19,12 @@ namespace ReoGridWorkSpace.ViewModels
 
     [ObservableProperty]
     private DataTable? _reoGridTable;
+    
+    
+    partial void OnReoGridTableChanged(DataTable? dt)
+    {
+
+    }
 
     public event EventHandler<CellChangedEventArgs>? CellDataChanged;
 

@@ -1,4 +1,6 @@
-﻿using ReoGridWorkSpace.ViewModels;
+﻿using AvalonDock.Layout.Serialization;
+using ReoGridWorkSpace.ViewModels;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +33,5 @@ namespace ReoGridWorkSpace.Views
         this.Close();
       };
     }
-
   }
 }

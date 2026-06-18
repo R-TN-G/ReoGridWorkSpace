@@ -51,7 +51,7 @@ namespace ReoGridWorkSpace.Views.Custom
           var dt = vm.ReoGridTable;
           if (dt != null)
           {
-            var rowIndex = args.Cell.Row - 1;
+            var rowIndex = args.Cell.Row;
             var colIndex = args.Cell.Column;
 
             while (dt.Columns.Count <= colIndex)
@@ -70,6 +70,20 @@ namespace ReoGridWorkSpace.Views.Custom
             Col = args.Cell.Column,
             NewValue = args.Cell.Data
           });
+
+          // 一時停止してから再計算
+          // 循環参照になるのでほかの方法を確認する
+          //var sheet = grid.CurrentWorksheet;
+          //sheet.SuspendFormulaReferenceUpdates();
+          //try
+          //{
+          //  sheet.ResumeFormulaReferenceUpdates();
+          //  sheet.Recalculate();
+          //}
+          //catch
+          //{
+          //  sheet.ResumeFormulaReferenceUpdates();
+          //}
         };
       }
     }

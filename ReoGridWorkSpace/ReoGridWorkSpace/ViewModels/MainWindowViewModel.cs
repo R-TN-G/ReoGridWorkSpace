@@ -14,6 +14,9 @@ using ReoGridWorkSpace.Interface;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Data;
 using System.Drawing;
+using AvalonDock;
+using AvalonDock.Layout.Serialization;
+using System.IO;
 
 namespace ReoGridWorkSpace.ViewModels
 {
@@ -24,6 +27,8 @@ namespace ReoGridWorkSpace.ViewModels
     public ReoGridSheetScoreViewModel ScoreViewModel { get; set; }
     // 国名表示用Grid ViewModel
     public ReoGridSheetCountryViewModel CountryViewModel { get; set; }
+    // AvalonDock状態保存ファイル
+    private string xmlPath = System.IO.Path.Combine("DockingLayouts", "MainWindowDockingLayout.xml");
 
     /// <summary>
     /// 閉じる
@@ -67,6 +72,10 @@ namespace ReoGridWorkSpace.ViewModels
       }
     }
 
+    /// <summary>
+    /// アンカラブルDockのテスト画面表示
+    /// </summary>
+    /// <param name="obj"></param>
     [RelayCommand]
     private void ShowAnchorableWindow(object obj)
     {
@@ -80,12 +89,15 @@ namespace ReoGridWorkSpace.ViewModels
       }
     }
 
+    /// <summary>
+    /// Bind変更通知のテスト
+    /// </summary>
     [RelayCommand]
     private void Test(object obj)
     {
       try
       {
-        var aa = ScoreViewModel.ReoGridTable;
+        var bindCheck = ScoreViewModel.ReoGridTable;
       }
       catch (Exception ex)
       {
@@ -93,6 +105,51 @@ namespace ReoGridWorkSpace.ViewModels
       }
     }
 
+    /// <summary>
+    /// AvalonDockの状態保存
+    /// </summary>
+    [RelayCommand]
+    private void SaveDockingXml(object obj)
+    {
+      try
+      {
+        if (obj is DockingManager dockingManager)
+        {
+          XmlLayoutSerializer serializer = new XmlLayoutSerializer(dockingManager);
+          using (var stream = new StreamWriter(Utility.PathUtility.CombineWithAppPath(xmlPath)))
+          {
+            serializer.Serialize(stream);
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        base.Logger.Error(ex);
+      }
+    }
+
+    /// <summary>
+    /// AvalonDockの状態ロード
+    /// </summary>
+    [RelayCommand]
+    private void LoadDockingXml(object obj)
+    {
+      try
+      {
+        if(obj is DockingManager dockingManager)
+        {
+          XmlLayoutSerializer serializer = new XmlLayoutSerializer(dockingManager);
+          using (var stream = new StreamReader(Utility.PathUtility.CombineWithAppPath(xmlPath)))
+          {
+            serializer.Deserialize(stream);
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        base.Logger.Error(ex);
+      }
+    }
 
     /// <summary>
     /// ViewModelBaseの引数ありDisposeを上書きし、終了時の自動Dispose処理を設定する

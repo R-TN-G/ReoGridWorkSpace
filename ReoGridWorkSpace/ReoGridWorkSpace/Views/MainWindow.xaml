@@ -5,31 +5,41 @@
     xmlns:avalonDock="https://github.com/Dirkster99/AvalonDock"
     xmlns:custom="clr-namespace:ReoGridWorkSpace.Views.Custom"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:ReoGridWorkSpace"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xcad="http://xceed.com"
     Title="MainWindow"
     Width="1600"
     Height="900"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    WindowState="Maximized">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDockingXmlCommand}" CommandParameter="{Binding ElementName=dockingManager}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding SaveDockingXmlCommand}" CommandParameter="{Binding ElementName=dockingManager}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <avalonDock:DockingManager>
+        <avalonDock:DockingManager x:Name="dockingManager">
             <avalonDock:DockingManager.Theme>
                 <avalonDock:Vs2013DarkTheme />
             </avalonDock:DockingManager.Theme>
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutDocumentPane>
-                        <avalonDock:LayoutDocument Title="AI_徳川成績">
+                        <avalonDock:LayoutDocument Title="AI_徳川成績" ContentId="TokugawaScore">
                             <custom:ReoGridSheet DataContext="{Binding ScoreViewModel}" />
                         </avalonDock:LayoutDocument>
                     </avalonDock:LayoutDocumentPane>
                     <avalonDock:LayoutDocumentPane>
-                        <avalonDock:LayoutDocument Title="国名">
+                        <avalonDock:LayoutDocument Title="国名" ContentId="CountryName">
                             <custom:ReoGridSheet DataContext="{Binding CountryViewModel}" />
                         </avalonDock:LayoutDocument>
                     </avalonDock:LayoutDocumentPane>
@@ -40,22 +50,24 @@
 
         <Grid Grid.Row="1" Background="Gray">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="0,4,40,4" />
+                    </Style>
+                </StackPanel.Resources>
                 <Button
                     Width="260"
                     Margin="0,4,40,4"
                     Command="{Binding ShowAnchorableWindowCommand}"
                     Content="LayoutAnchorablePane確認画面へ移動" />
                 <Button
+                    Width="100"
+                    Command="{Binding TestCommand}"
+                    Content="BindTest" />
+                <Button
                     Width="120"
-                    Margin="0,4"
                     Command="{Binding CloseCommand}"
                     Content="閉じる" />
-
-                <Button
-                    Width="100"
-                    Margin="20,0"
-                    Command="{Binding TestCommand}"
-                    Content="Test" />
             </StackPanel>
 
         </Grid>
